@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>form</title>
+	<script type="text/javascript">
+		function validate()
+		{
+			var f=document.getElementById("first").value;
+			var l=document.getElementById("last").value;
+			var m=document.getElementById("middle").value;
+			var fn=document.getElementById("full");
+			var ps=document.getElementById("psd").value;
+			var gm=document.getElementById("gmail").value;
+			var p=/[a-z,A-Z,0-9]+/
+			var g=/^[a-z,A-Z,0-9][a-z,A-Z,0-9,_,.]*@[a-z]{3,5}\.[a-z]{2,3}$/
+			var c1=document.getElementById("c1").checked;
+			var c2=document.getElementById("c2").checked;
+			var c3=document.getElementById("c3").checked;
+			var c4=document.getElementById("c4").checked;
+			var sub=document.getElementById("submit");
+			if(f.length<4 || l.length<4 || ps.length<7 || !p.test(f) || !p.test(l) || !p.test(m) || !g.test(gm))
+			{
+				return false;
+			}
+			if((c1 && !c2 && !c3 && !c4) || (c2 && !c1 && !c3 && !c4) || (c3 && !c2 && !c1 && !c4) || (c4 && !c2 && !c3 && !c1))
+			{
+				return false;
+			}
+			if(f.length<4)
+			{
+				f.style.border="3px solid red";
+				f.style.border-radius="2px";
+				f.style.border-shadow="3px";
+				f.value="first name should include atleast 4 characters";
+			}
+			if(length.length<4)
+			{
+				l.style.border="3px solid red";
+				l.style.border-radius="2px";
+				l.style.border-shadow="3px";
+				l.value="last name should include atleast 4 characters";
+			}
+			if(!(p.test(f))
+			{
+				f.style.border="3px solid red";
+				f.style.border-radius="2px";
+				f.style.border-shadow="3px";
+				f.value="first name should not include special characters";
+			}
+			if(!(p.test(l))
+			{
+				f.style.border="3px solid red";
+				f.style.border-radius="2px";
+				f.style.border-shadow="3px";
+				f.value="last name should not include special characters";
+			}
+			if(!(p.test(m))
+			{
+				f.style.border="3px solid red";
+				f.style.border-radius="2px";
+				f.style.border-shadow="3px";
+				f.value="middle name should not include special characters";
+			}if(ps.length<7)
+			{
+				f.style.border="3px solid red";
+				f.style.border-radius="2px";
+				f.style.border-shadow="3px";
+				f.value="password should include atleast 7 characters";
+			}
+			if(!(g.test(gm)))
+			{
+				f.style.border="3px solid red";
+				f.style.border-radius="2px";
+				f.style.border-shadow="3px";
+				f.value="invalid gmail address";
+			}
+			setTimeout(validate,3000);
+		}
+		function re_set()
+		{
+			var res=document.getElementById("reset");
+			var c=confirm("Are you sure to reset?");
+			if(c)
+			{
+				res.type="reset";
+			}
+			else
+			{
+				res.type="button";
+			}
+		}
+		function phone()
+		{
+			var s=document.getElementById("country");
+			if(s.selectedIndex == 1)
+			{
+				var m=document.getElementById("mobile");
+				m.placeholder="xxx-xxx-xxxx";
+			}
+			else
+			{
+				var m=document.getElementById("mobile");
+				m.placeholder="xxxxxxxxxx";
+			}
+		}
+		function change()
+		{
+			var e=document.getElementById("eyeimage");
+			var ps=document.getElementById("psd");
+			if(e.src="passwordopen")
+			{
+				e.src="passwordclose.png";
+				ps.type="text";
+			}
+			else
+			{
+				e.src="passwordopen.png";
+				ps.type="password";
+			}
+		}
+	</script>
+</head>
+<body style="background: linear-gradient(90deg,orange,red,pink);">
+	<center>
+		<div>
+			<h1>Registration Form</h1>
+			<form action="/n.php" method="post" onsubmit="return validate();">
+			<table>
+				<tr><td>First Name : </td><td><input type="text" id="first"></td></tr>
+				<tr><td>Last Name : </td><td><input type="text" id="last"></td></tr>
+				<tr><td>Middle Name : </td><td><input type="text" id="middle"></td></tr>
+				<tr><td>Full Name : </td><td><input type="text" id="full" readonly></td></tr>
+				<tr><td>Mobile Number : </td><td><select id="country"><option>IND</option><option>USA</option></select><input type="text" id="mobile" placeholder="xxxxxxxxxx"></td></tr>
+				<tr><td>Password : </td><td><input type="password" id="psd"> <img id="eyeimage" src="passwordopen.png" width="12px" height="10px"></td></tr>
+				<tr><td>Hobbies : </td><td><input type="checkbox" id="c1">reading <input type="checkbox" id="c2">browsing <input type="checkbox" id="c3">sleeping <input type="checkbox" id="c4">programming</td></tr>
+				<tr><td> upload passport photo : </td><td><input type="file" accept="image/*" size=""></td></tr>
+				<tr><td>Gmail : </td><td><input type="text" id="gmail"></td></tr>
+				<tr><td>DOB : </td><td><input type="date"></td></tr><tr>
+				<tr><td>Address : </td><td><input type="address"></td></tr>
+				<tr><td colspan="2"><input type="checkbox">I agree to the terms of the company</td></tr>
+				<tr><td><center><input type="button" value="Reset" id="reset"></center></td><td><center><input type="submit" value="Register" id="submit"></center></td></tr>
+			</table>
+			</form>
+			<script type="text/javascript">
+				var res=document.getElementById("reset");
+				res.addEventListener("click",re_set);
+				var c=document.getElementById("country");
+				c.addEventListener("change",phone);
+				var eye=document.getElementById("eye");
+				eye.addEventListener("click",change);
+			</script>
+</body>
+</html>
